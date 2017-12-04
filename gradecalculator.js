@@ -7,15 +7,17 @@ function calculateCurrentGrade(){
     }
     currentGrade = Math.round(currentGrade*100);
     document.getElementById("currentGrade").innerHTML = "Your Current Grade: " + currentGrade + "%";
+    individualGrade();
     return currentGrade;
+
 
 }
 
 function calculateFinalGrade(){
     document.getElementById("finalNeeded").innerHTML = "You Need: ";
-    var finalWeight = (document.getElementById("finalWeight").value)/100;
-    var wantedGrade = (document.getElementById("wantedGrade").value)/100;
-    var currentGrade = calculateCurrentGrade()/100;
+    var finalWeight = (document.getElementById("finalWeight").value);
+    var wantedGrade = (document.getElementById("wantedGrade").value);
+    var currentGrade = calculateCurrentGrade();
     console.log(currentGrade);
     var finalGrade = (wantedGrade - currentGrade)/finalWeight;
     console.log(finalGrade);
@@ -28,6 +30,7 @@ function averages(){
     var homework = document.getElementById("homework").value;
     var quizzes = document.getElementById("quiz").value;
     var tests = document.getElementById("test").value;
+    var final = document.getElementById("final").value;
     homework = homework.split(",");
     quizzes = quizzes.split(",");
     tests = tests.split(",");
@@ -45,6 +48,7 @@ function averages(){
     var homeworkSum = 0;
     var quizzesSum = 0;
     var testsSum = 0;
+    var finalSum = 0;
 
     for(var z = 0; z < homework.length; z++){
         homeworkSum += homework[z];
@@ -55,11 +59,15 @@ function averages(){
     for(var y= 0; y < tests.length; y++){
         testsSum += tests[y];
     }
+    for(var v=0; v< final.length; v++){
+        finalSum += final[v]
+    }
     var homeworkAvg = homeworkSum/homework.length/100;
     var quizzesAvg = quizzesSum/quizzes.length/100;
     var testsAvg = testsSum/tests.length/100;
+    var finalAvg = finalSum/100;
     var gradeArray = [];
-    gradeArray.push(homeworkAvg,testsAvg,quizzesAvg);
+    gradeArray.push(homeworkAvg,quizzesAvg,testsAvg,finalAvg);
     console.log(gradeArray);
     return gradeArray;
 
@@ -70,11 +78,19 @@ function weights(){
     var quizweight = parseInt(document.getElementById("quizWeight").value)/100;
     var testweight = parseInt(document.getElementById("testWeight").value)/100;
     var finalWeight = parseInt(document.getElementById("finalWeight").value)/100;
-    while(hwweight + quizweight + testweight + finalWeight !== 1) {
         var weightArray = [];
-        weightArray.push(hwweight,testweight,quizweight);
+        weightArray.push(hwweight,quizweight,testweight,finalWeight);
         console.log(weightArray);
         return weightArray;
     }
-    alert("You cannot have a weight greater than 100%");
+function individualGrade(){
+    var gradeavg = averages();
+    var weightavg = weights();
+    var hwGrade = gradeavg[0]*weightavg[0];
+    var quizGrade = gradeavg[1]*weightavg[1];
+    var testGrade = gradeavg[2]*weightavg[2];
+    console.log(testGrade);
+    console.log(quizGrade);
+    console.log(hwGrade);
+
 }
