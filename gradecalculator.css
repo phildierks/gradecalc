@@ -1,0 +1,10 @@
+body {
+    font-size:20px;
+    font-family: Trebuchet MS;
+}
+.resizedTextbox {
+    height: 20px;
+}
+#wrongInput{
+    font-color:red;
+}

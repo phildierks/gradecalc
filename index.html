@@ -2,52 +2,55 @@
 <html lang="en">
 
 <head>
-    <script src="gradecalculator.js"></script>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="gradecalculator.css"/>
+    <script src="gradecalculator.js"></script>
+
     <title>Grade Calculator</title>
 </head>
+
 <body>
 <center>
-    <table border=”1” align="center">
+    <table border=”1” align="center" id="calculateGrades">
         <tr>
             <td></td>
-            <td>Percentages</td>
-            <td>Weight</td>
+            <td align="center" height="100">Grade Percentages</td>
+            <td align="center" height="100">Weight</td>
         </tr>
         <tr id="hw">
-            <td>Homework</td>
-            <td>
-                <input type="text" id="homework" value="90,93,95" size="10">%
+            <td align="center" height="100" width="200">Homework</td>
+            <td align="center" height="100" width="200" >
+                <input type="text" id="homework" value="90,93,95" size="10" class="resizedTextbox">%
             </td>
-            <td>
-                <input type="text" id="homeworkWeight" value="20" size="10" maxlength="2">%
+            <td align="center" height="100" width="200">
+                <input type="text" id="homeworkWeight" value="20" size="10" maxlength="3" class="resizedTextbox">%
             </td>
         </tr>
         <tr id="tests">
-            <td>Tests</td>
-            <td>
-                <input type="text" id="test" value="80,90,78" size="10">%
+            <td align="center" height="100" width="200">Tests</td>
+            <td align="center" height="100" width="200">
+                <input type="text" id="test" value="80,90,78" size="10" class="resizedTextbox">%
             </td>
-            <td>
-                <input type="text" id="testWeight" value="30" size="10" maxlength="2">%
+            <td align="center" height="100" width="200">
+                <input type="text" id="testWeight" value="30" size="10" maxlength="2" class="resizedTextbox">%
             </td>
         <tr id="quizzes">
-            <td>Quizzes</td>
-            <td>
-                <input type="text" id="quiz" value="78,78,89" size="10">%
+            <td align="center" height="100" width="200">Quizzes</td>
+            <td align="center" height="100" width="200">
+                <input type="text" id="quiz" value="78,78,89" size="10" class="resizedTextbox">%
             </td>
-            <td>
-                <input type="text" id="quizWeight" value="30" size="10" maxlength="2">%
+            <td align="center"height="100" width="200">
+                <input type="text" id="quizWeight" value="30" size="10" maxlength="2" class="resizedTextbox">%
             </td>
         </tr>
         </tr>
         <tr id="mid">
-            <td>Midterm</td>
-            <td>
-                <input type="text" id="midterm" value="90" size="10">%
+            <td align="center" height="100" width="200">Midterm</td>
+            <td align="center" height="100" width="200">
+                <input type="text" id="midterm" value="90" size="10" class="resizedTextbox">%
             </td>
-            <td>
-                <input type="text" id="midtermWeight" value="20" size="10" maxlength="2">%
+            <td align="center" height="100" width="200">
+                <input type="text" id="midtermWeight" value="20" size="10" maxlength="2" class="resizedTextbox">%
             </td>
         </tr>
 
@@ -55,10 +58,18 @@
 
     </table>
     <button id="gradecalc" onclick="calculateCurrentGrade()"> Calculate Current Grade</button>
-    <div id="currentGrade" >Your Current Grade : </div>
-    What Grade Do you want?<input type="text" id="wantedGrade" value="90" size="2" maxlength="2">%
-    <button id="finalGrade" onclick="calculateFinalGrade()">Calculate Final Exam Grade Needed</button>
+    <div id="currentGrade"></div>
+    <div id="Error"></div>
+    <div id="wrongInput"></div>
+    <div>
+    What Grade Do you want? <input type="text" id="wantedGrade" value="90" size="2" maxlength="2" class="resizedTextbox">%
+    </div>
+    <div>
+        Final Weight: <input type="text" id="finalWeight" value="15" size="2" maxlength="2" class="resizedTextbox">%
+    </div>
+        <button id="finalGrade" onclick="calculateFinalGrade()">Calculate Final Exam Grade Needed</button>
     <div id="finalNeeded"></div>
+    <div id="wrongInputs"></div>
 </center>
 </body>
 </html>
