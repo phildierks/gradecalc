@@ -12,8 +12,8 @@ function calculateCurrentGrade(){
         currentGrade += (gradeArray[i]*weight[i]);
     }
     var weightSum = weight[0]+weight[1]+weight[2]+weight[3];
-    if(weightSum != 1){
-        alert("Your Weights Must Add up to 100");
+    if(weightSum >= 1){
+        alert("Your Weights Cannot Add up to 100, What about your Final?");
         return;
     }
     currentGrade = currentGrade/weightSum;
@@ -35,8 +35,10 @@ function calculateCurrentGrade(){
 
 function calculateFinalGrade(){
     document.getElementById("finalNeeded").innerHTML = "";
-    document.getElementById("wrongInputs").innerHTML = "";
-    var finalWeight = document.getElementById("finalWeight").value;
+    var weight = weights();
+    var weightSum = weight[0]+weight[1]+weight[2]+weight[3];
+    var finalWeight = 1-weightSum;
+    finalWeight*=100;
     var wantedGrade = document.getElementById("wantedGrade").value;
     var currentGrade = calculateCurrentGrade();
     if(isNaN(wantedGrade)){
@@ -54,7 +56,11 @@ function calculateFinalGrade(){
     console.log(finalGrade);
     finalGrade = Math.round(finalGrade);
     console.log(finalGrade);
+    if(finalGrade < 0 ){
+        document.getElementById("finalNeeded").innerHTML = "You don't need to take the final because you have already assured that Grade for yourself!";
+    }else{
     document.getElementById("finalNeeded").innerHTML = "You Need a " + finalGrade + "% on the final!";
+}
 }
 
 
@@ -62,6 +68,10 @@ function calculateFinalGrade(){
 function averageArray(arr){
     arr = arr.split(",");
     for(var i = 0; i < arr.length; i++){
+        if (arr[i].match(/[a-z]/i)) {
+            alert("You cannot have letters in your grades");
+            return;
+        }
         arr[i] = parseInt(arr[i]);
     }
     var sum = 0;
