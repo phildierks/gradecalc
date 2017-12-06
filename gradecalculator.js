@@ -14,6 +14,7 @@ function calculateCurrentGrade(){
     var weightSum = weight[0]+weight[1]+weight[2]+weight[3];
     if(weightSum >= 1){
         alert("Your Weights Cannot Add up to 100, What about your Final?");
+        document.getElementById("currentGrade").innerHTML = "";
         return;
     }
     currentGrade = currentGrade/weightSum;
@@ -41,6 +42,10 @@ function calculateFinalGrade(){
     finalWeight*=100;
     var wantedGrade = document.getElementById("wantedGrade").value;
     var currentGrade = calculateCurrentGrade();
+    if(isNaN(currentGrade)){
+        document.getElementById("finalNeeded").innerHTML = "";
+        return;
+    }
     if(isNaN(wantedGrade)){
         alert("You made an Error when entering your wanted grade");
         document.getElementById("wantedGrade").value = "";
@@ -72,6 +77,10 @@ function averageArray(arr){
             alert("You cannot have letters in your grades");
             return;
         }
+        if (arr[i]<0) {
+            alert("You cannot have a negative grade");
+            return;
+        }
         arr[i] = parseInt(arr[i]);
     }
     var sum = 0;
@@ -92,6 +101,13 @@ function weights(){
     var midtermWeight = parseInt(document.getElementById("midtermWeight").value)/100;
         var weightArray = [];
         weightArray.push(hwweight,quizweight,testweight,midtermWeight);
+        for(var i = 0;i<weightArray.length;i++){
+            if (weightArray[i]<0) {
+                alert("You cannot have a negative weight");
+                document.getElementById("currentGrade").innerHTML = "";
+                return;
+            }
+        }
         console.log(weightArray);
         return weightArray;
     }
@@ -113,6 +129,9 @@ function colorCode(element,avg){
     }
     if(avg <= .59){
         element.style.background = "red";
+    }
+    if(isNaN(avg)){
+        element.style.background = "white";
     }
 }
 
